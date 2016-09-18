@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>时间问候</title>
+</head>
+<style type="text/css">
+.welcome{text-align:center;font-size:20px;}
+#stayTime{font-size:30px;color:#f00;}
+</style>
+<script type="text/javascript">
+var today=new Date();
+var day=new Array("日","一","二","三","四","五","六");
+var day0=today.getDay();
+document.write("今天是"+(today.getFullYear())+"年"+(today.getMonth()+1)+"月"+(today.getDate())+"日<br/>星期"+day[day0]+"&emsp;");
+function Time()
+{
+	var today=new Date();
+	var hours=today.getHours();
+	var minutes=today.getMinutes();
+	var seconds=today.getSeconds();
+	if(hours<10) hours="0"+hours;
+	if(minutes<10) minutes="0"+minutes;
+	if(seconds<10) seconds="0"+seconds;
+	var s=hours+":"+minutes+":"+seconds;
+	document.getElementById("welcome").innerHTML=s;
+	setTimeout("Time()",1000);
+}
+var hours=today.getHours();
+if(hours>=23||(hours>=0)&&(hours<6))
+{
+	document.write("午夜时分，早点休息！");	
+}
+if(hours>=6&&hours<12)
+{
+	document.write("上午好！");
+}
+if(hours>=12&&hours<14)
+{
+	document.write("午饭时间，按时吃饭！");	
+}
+if(hours>=14&&hours<18)
+{
+	document.write("下午好！");	
+}
+if(hours>=18&&hours<23)
+{
+	document.write("晚上好！");	
+}
+var second=0;
+var minute=0;
+var hour=0;
+window.setInterval("stayOnlineTime()",1000);
+function stayOnlineTime()
+{
+	second++;
+	if(second>=60)
+	{
+		second=0;
+		minute++;	
+	}
+	if(minute>=60)
+	{
+		minute=0;
+		hour++;	
+	}
+	document.getElementById("stayTime").innerHTML=hour+":"+minute+":"+second;
+}
+</script>
+<body onload="Time()">
+<p id="welcome"></p>
+<p>您在本站停留时间为：<span id="stayTime"></span></p>
+</body>
+</html>

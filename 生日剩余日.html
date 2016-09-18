@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>生日剩余日</title>
+</head>
+<style type="text/css">
+
+</style>
+<script type="text/javascript">
+function Count()
+{
+	var today=new Date();
+	var year=today.getFullYear();
+	var month=today.getMonth()+1;
+	var date=today.getDate();
+	var bYear=parseInt(document.getElementById("birthYear").value);
+	var bMonth=parseInt(document.getElementById("birthMonth").value);
+	var bDay=parseInt(document.getElementById("birthDay").value);
+	var sumDay=0;
+	if(isNaN(bYear)||bYear<=0||bYear>9999)
+	{
+		alert("您输入的年份有错！");	
+	}
+	else if(isNaN(bMonth)||bMonth<=0||bMonth>12)
+	{
+		alert("您输入的月份有错！");	
+	}
+	else if(isNaN(bDay)||bDay<=0||bDay>31)
+	{
+		alert("您输入的日期有错！");	
+	}
+	else if(bYear>year||(bYear==year)&&(month<bMonth)||(bYear==year)&&(month==bMonth)&&(date<bDay))
+	{
+		alert("你应该还没出生！");	
+	}
+	else
+	{
+		if(month>bMonth)//今年生日已过
+		{
+			sumDay=(12-month)*30+(30-date)+(bMonth-1)*30+bDay;
+			alert("今年生日已经过了！");
+		}
+		else if(month==bMonth&&bDay<date)
+		{
+			sumDay=365+(date-bDay);
+			alert("今年生日已经过了");
+		}
+		else if(month<bMonth)//今年生日没过
+		{
+			sumDay=(bMonth-month-1)*30+(30-date)+bDay;
+			alert("今年生日没过");	
+		}
+		else if(month==bMonth&&bDay>date)
+		{
+			sumDay=bDay-date;
+			alert("今年生日没过");	
+		}
+		else
+		{
+			alert("生日快乐！");			
+		}
+		alert("距离你的生日"+bYear+"年"+bMonth+"月"+bDay+"日还剩"+sumDay+"天");
+	}
+	
+}
+function init()
+{
+	document.getElementById("birthYear").value="";
+	document.getElementById("birthMonth").value="";
+	document.getElementById("birthDay").value="";	
+}
+</script>
+<body onload="init()">
+<form method="post" id="form1" name="form1">
+	<label for="birth">请输入您的生日：</label>
+    <input type="text" id="birthYear" name="birthYear" maxlength="4"/>年
+    <input type="text" id="birthMonth" name="birthMonth" maxlength="2"/>月
+    <input type="text" id="birthDay" name="birthDay" maxlength="2" />日
+    <br />
+    <input type="button" onclick="Count()" value="确定"/>
+</form>
+</body>
+</html>

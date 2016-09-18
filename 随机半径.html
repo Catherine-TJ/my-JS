@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>随机半径计算圆周长和面积</title>
+</head>
+<script type="text/javascript">
+var l=0,s=0;
+function randomR()
+{
+	var r=Math.round(Math.random()*20);
+	document.getElementById("r").value=r;
+}
+function result()
+{
+	var r=document.getElementById("r").value;
+    l=Math.round(parseFloat(2*Math.PI*r));
+	s=Math.round(Math.PI*r*r);
+	document.getElementById("l").value=l;
+	document.getElementById("s").value=s;	
+}
+</script>
+<body>
+<label for="r">半径：</label><input type="text" name="r" id="r" />
+<br /><br />
+<label for="l">周长：</label><input type="text" name="l" id="l" />
+<br /><br />
+<label for="s">面积：</label><input type="text" name="s" id="s" />
+<br /><br />
+<input type="button" value="随机半径" onclick="randomR()" />
+<input type="button" value="计算结果" onclick="result()" />
+</body>
+</html>

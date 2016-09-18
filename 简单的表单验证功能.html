@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+<style>
+
+</style>
+<script type="text/javascript">
+function makeValidate()
+{
+	var validate="";
+	for(var i=1;i<=4;i++)
+	{
+		validate+=Math.floor(Math.random()*10);
+	}	
+	document.getElementById("getValidate").value=validate;
+}
+function chkEmail()
+{
+	var emailValue=document.getElementById("email").value;
+	var at=emailValue.indexOf("@");
+	var dot=emailValue.indexOf(".");
+	if(emailValue=="")
+	{
+		alert("邮箱名为空！");
+		return false;	
+	}	
+	else
+	{
+		if(at==-1||dot==-1)
+		{
+			alert("邮箱名必须包含@和.符号！");
+			return false;	
+		}
+		else if(at==0||dot==0)
+		{
+			alert("@或.符号不能出现在第一位！");
+			return false;
+		}
+		else if(dot==emailValue.length-1)
+		{
+			alert(".符号不能出现在最后一位！");
+			return false;	
+		}
+		else if(dot-at<=1)
+		{
+			alert("@字符必须出现在.前面且两字符之间应该有内容！");
+			return false;	
+		}
+		else
+		{
+			return true;	
+		}
+	}
+}
+function chkPsw()
+{
+	var password=document.getElementById("psw").value;
+	if(password=="")
+	{
+		alert("密码为空！");
+		return false;	
+	}	
+	else if(password.length<6)
+	{
+		alert("密码不能小于6个字符！");
+		return false;
+	}
+	else
+	{
+		return true;	
+	}
+}
+function chkValidate()
+{
+	var validateValue=document.getElementById("validate").value;
+	if(validateValue=="")
+	{
+		alert("验证码为空！");
+		return false;	
+	}	
+	else if(validateValue!=document.getElementById("getValidate").value)
+	{
+		alert("验证码不正确！");
+		return false;	
+	}
+	else 
+	{
+		return true;	
+	}
+}
+function chk()
+{
+	if(chkEmail()&&chkPsw()&&chkValidate())
+	{
+		alert("登录成功！");	
+	}
+	else
+	{
+		alert("登录失败!");	
+	}	
+}
+function clr()
+{
+	document.getElementById("getValidate").value="";
+	document.getElementById("email").value="";
+	document.getElementById("psw").value="";
+	document.getElementById("validate").value="";	
+}
+</script>
+<body>
+<table>
+<tr><td>用户登录</td></tr>
+<tr>
+	<td><label for="email">邮箱名：</label></td>
+    <td><input type="text" name="email" id="email" /></td>
+</tr>
+<tr>
+	<td><label for="psw">密 码：</label></td>
+    <td><input type="password" name="psw" id="psw" /></td>
+</tr>
+<tr>
+	<td><label for="validate">验证码：</label></td>
+    <td><input type="text" name="validate" id="validate" maxlength="4"/></td>
+</tr>
+<tr>
+	<td><input type="button" value="生成验证码" onclick="makeValidate()"/></td>
+    <td><input type="text" id="getValidate" name="getValidate" /></td>
+</tr>
+<tr>
+	<td><input type="button" value="登录" onclick="chk()"/></td>
+    <td><input type="button" value="清除" onclick="clr()" /></td>
+</tr>
+</table>
+</body>
+</html>

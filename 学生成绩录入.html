@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="style/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+<link href="style/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+<link href="style/style.css" rel="stylesheet" type="text/css"/>
+</head>
+<style>
+td{width:100px;font-size:20px;heigth:20px;text-align:center;}
+</style>
+<script type="text/javascript">
+var student=new Array("李丽","王明","周山");
+var course=new Array("英语","高数","动态脚本");
+
+document.write("<table><tr><td>姓名</td>");
+for(var i=0;i<course.length;i++)
+{
+	document.write("<td>"+course[i]+"</td>");	
+}
+document.write("<td>总分</td><td>平均分</td><td>等级</td></tr>");
+for(var i=0;i<student.length;i++)
+{
+	var sum=0,avg=0;
+	var grade="";
+	document.write("<tr><td>"+student[i]+"</td>");
+	for(var j=0;j<course.length;j++)
+	{
+		while(true)
+		{
+			var question="请输入"+student[i]+"的"+course[j]+"成绩：";
+			var answer=prompt(question,"");
+			if(answer==""||answer<0||answer>100||isNaN(answer))
+			{
+				alert("您输入的数字为:"+answer+"，此成绩无效，请重新输入！");
+				continue;	
+			}
+			else if(answer==null)
+			{
+		
+			}
+			else
+			{
+				document.write("<td>"+answer+"</td>");
+				sum+=parseFloat(answer);
+				break;
+			}
+	    }
+		
+	}	
+	avg=parseFloat(Math.floor(sum/course.length));
+	
+	
+	//判断成绩等级
+	switch(Math.floor(avg/10))
+	{
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+		case 5:	grade="不及格";break;
+		case 6:grade="及格";break;
+		case 7:grade="中等";break;
+		case 8:grade="良好";break;
+		case 9:grade="优秀";break;
+		default:alert("成绩无效，请重新输入！");
+	}
+	
+	document.write("<td>"+sum+"</td><td>"+avg+"</td>"+"<td>"+grade+"</td></tr>");
+}
+document.write("</table>");
+</script>
+<body>
+
+   
+</body>
+</html>

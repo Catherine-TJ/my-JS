@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+<style type="text/css">
+
+</style>
+<script type="text/javascript">
+var array=new Array();
+var count=0;
+function myGrade(subname)
+{
+	count=subname.selectedIndex;
+	array[count]=subname.options[count].value;
+}
+function chk(subname)
+{
+	subname.textarea.value=array[count];
+	for(var i=0;i<subname.profession.length;i++)
+	{
+		if(subname.profession[i].checked)
+		{
+			subname.textarea.value+="所选专业及课程名：\n"+""+subname.profession[i].value+"\n";	
+		}	
+	}	
+	for(var i=0;i<subname.course.length;i++)
+	{
+		if(subname.course[i].checked)
+		{
+			subname.textarea.value+=subname.course[i].value+"\n";	
+		}	
+	}
+}
+
+</script>
+<body>
+<form name="form1">
+    <p>专业</p>
+    <div>
+        <input type="radio" name="profession" value="计算机信息管理" checked="checked" /><label>计算机信息管理</label>
+        <br />
+        <input type="radio" name="profession" value="计算机应用技术" /><label>计算机应用技术</label>
+    </div>
+    <p>年级</p>
+    <div>
+    	<select name="grade" onchange="myGrade(this)">
+        	<option value="2012级">2012级</option>
+            <option value="2013级">2013级</option>
+            <option value="2014级">2014级</option>
+            <option value="2015级">2015级</option>
+        </select>
+    </div>
+    <p>可选课程</p>
+    <div>
+    	<input type="checkbox" name="course" value="嵌入式面向对象编程规范" />嵌入式面向对象编程规范<br />
+        <input type="checkbox" name="course" value="网页制作" />网页制作<br />
+        <input type="checkbox" name="course" value="脚本语言与动态网页设计" />脚本语言与动态网页设计<br />
+        <input type="checkbox" name="course" value="信息系统设计与实施" />信息系统设计与实施<br />
+        <input type="checkbox" name="course" value="JSP商务网站设计" />JSP商务网站设计
+    </div>
+    <div>
+    	<input type="button" value="确定" onclick="chk(this.form)"/>
+        <input type="button" value="清除" onclick="clr(this.form)" />
+    </div>
+    <p>选课情况</p>
+    <div>
+    	<textarea cols="50" rows="10" id="content"></textarea>
+    </div>
+</form>
+</body>
+</html>
