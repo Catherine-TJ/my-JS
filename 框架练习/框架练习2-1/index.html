@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<script type="text/javascript">
+	var visitedPageArr=new Array;
+	function returnVisitedPage()
+	{
+		var returnStr="WELCOME\n";
+		for(var i=0;i<visitedPageArr.length;i++)
+		{
+			returnStr+=visitedPageArr[i]+"\n";
+		}
+		return returnStr;
+		
+	}
+	function addPage(fileName)
+	{
+		var startIndex=fileName.lastIndexOf('/')+1;
+		fileName=fileName.substr(startIndex);
+		visitedPageArr[visitedPageArr.length]=fileName;
+		return true;
+	}
+</script>
+</head>
+
+
+<frameset cols="20%,*">
+	<frame name="fraMenu" src="menuPage.html" />
+    <frame name="fraMain" src="mainPage.html" />
+</frameset>
+
+</html>

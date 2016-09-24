@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<script type="text/javascript">
+	var newWindow;
+	function windowInit()
+	{
+		if(typeof(newWindow)!="undefined"||newWindow.closed==false)
+		{
+			newWindow.close();	
+		}	
+	}
+	function openNewWindow()
+	{
+		var winTop=(screen.height/2)-125;
+		var winLeft=(screen.weidth/2)-125;
+		var windowFeatures="width='250',height='250',";
+		windowFeatures+="left="+winLeft+",";
+		windowFeatures+="top="+winTop;
+		newWindow=window.open("newWindow.html","myWindow",windowFeatures);	
+	}
+	function getText()
+	{
+		if(typeof(newWindow)==undefined||newWindow.closed==true)
+		{
+			alert("NO Window is open!");	
+		}
+		else 
+		{
+			document.form1.text1.value=newWindow.document.form1.text1.value;	
+		}
+	}
+</script>
+</head>
+
+<body onload="windowInit()">
+	<form name="form1">
+    	<input type="button" value="Open New Window" onclick="openNewWindow()" />
+        <br />
+        New Window's Text
+        <br />
+        <input type="text" name="text1" />
+        <br />
+        <input type="button" value="Get Text" name="btnGetText" onclick="getText()" />
+    </form>
+</body>
+</html>

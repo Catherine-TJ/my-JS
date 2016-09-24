@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<script type="text/javascript">
+	function onloadAddPage()
+	{
+		 window.top.addPage(window.location.href);	
+	}
+	function changeMenu(linkIndex)
+	{
+		var menuForm=window.top.fraMenu.document.menuForm;
+		menuForm.selectPage.selectedIndex=linkIndex;
+		if(window.parent.mainTop==window.self)
+		{
+			menuForm.chooseFrame[0].checked=true;
+		}	
+		else
+		{
+			menuForm.chooseFrame[1].checked=true;	
+		}
+		return true;		
+	}
+	function showVisited()
+	{
+		document.pageForm.visitedPages.value=window.top.returnVisitedPage();	
+	}
+</script>
+</head>
+
+
+<body onload="return onloadAddPage()">
+<h3>This is Page B</h3>
+<p>
+	<A href="pageA.html" onclick="return changeMenu(0)">Page A</A>
+    <A href="pageB.html" onclick="return changeMenu(1)">Page B</A>
+    <A href="pageC.html" onclick="return changeMenu(2)">Page C</A>
+</p>
+<form name="pageForm">
+<textarea name="visitedPages" cols="35" rows="8"></textarea><br />
+<input type="button" value="ListPages Visited" onclick="showVisited()" />
+</form>
+</body>
+</html>
