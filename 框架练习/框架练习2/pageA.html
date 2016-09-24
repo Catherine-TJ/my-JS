@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>pageA</title>
+<script type="text/javascript">
+	function changeMenu(linkIndex)
+	{
+		var formObject=window.top.fraMenu.menuForm;
+		formObject.selectPage.selectedIndex=linkIndex;
+		if(window.parent.mainTop==window.self)
+		{
+			formObject.chooseFrame[0].checked=true;	
+		}
+		else
+		{
+			formObject.chooseFrame[1].checked=true;	
+		}
+		return true;
+	}
+	function showVisited()
+	{
+		document.pageForm.visitedPages.value=window.top.returnVisitedPage();	
+	}
+	function onloadAddPage()
+	{
+		return window.top.addPage(window.location.href);
+	}
+</script>
+</head>
+
+<body onload="onloadAddPage()">
+<h3>This is PageA</h3>
+<p>
+	<A href="pageA.html" name="pageALink" onclick="return changeMenu(0)">Page A</A>
+    <A href="pageB.html" name="pageBLink" onclick="return changeMenu(1)">Page B</A>
+    <A href="pageC.html" name="pageCLink" onclick="return changeMenu(2)">Page C</A>
+    <A href="pageD.html" name="pageDLink" onclick="return changeMenu(3)">Page D</A>
+</p>
+<form name="pageForm">
+	<textarea cols="35" rows="8" name="visitedPages"></textarea><br />
+    <input type="button" value="ListPages Visited" onclick="showVisited()" />
+</form>
+</body>
+</html>

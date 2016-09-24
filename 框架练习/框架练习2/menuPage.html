@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>menuPage</title>
+<script type="text/javascript">
+	function choosePage()
+	{
+		var choose=document.menuForm.selectPage;
+		var windowObject;
+		if(document.menuForm.chooseFrame[0].checked==true)
+		{
+			windowObject=window.parent.fraMain.mainTop;	
+		}	
+		else
+		{
+			windowObject=window.parent.fraMain.mainBottom;	
+		}
+		windowObject.location.href=choose.options[choose.selectedIndex].value;
+		return true;
+	}
+</script>
+</head>
+
+<body>
+<p>Select frame</p>
+<form name="menuForm">
+	Top
+	<input type="radio" name="chooseFrame" checked="checked"/>
+    Bottom
+    <input type="radio" name="chooseFrame" />
+ 	<br /><br />  
+    <select name="selectPage" onchange="choosePage()">
+    	<option value="pageA.html">PageA</option>
+        <option value="pageB.html">PageB</option>
+        <option value="pageC.html">PageC</option>
+        <option value="pageD.html">PageD</option>
+    </select>
+	
+</form>
+</body>
+</html>
