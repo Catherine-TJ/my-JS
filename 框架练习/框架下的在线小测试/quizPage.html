@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<script type="text/javascript">
+	function btnStartQuiz()
+	{
+		window.top.fraTopFrame.fraGlobalFunctions.resetQuiz();
+		window.location.href="AskQuestion.html";
+	}
+</script>
+</head>
+<style type="text/css">
+#MainBodyDIV{width:60%;margin:0 auto;padding:20px;border:#cecece 2px solid; border-radius:10px;}
+</style>
+<body>
+<div id="MainBodyDIV">
+<p>Rew you ready to become  billionaire?</p>
+<p>Click the Start Quiz button below and you'll be just 13 questions away from winning ONE BILLION DOLLARS.</p>
+<span class="SmallText">(ok really but it's nice to dream...)</span>
+<p>
+    <form name="quizForm">
+  		 <input type="button" name="startQuiz" value="Start Quiz" onclick="return btnStartQuiz()" />
+    </form>
+</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<script type="text/javascript">
+	var globalFunctions;
+	globalFunctions=window.top.fraTopFrame.fraGlobalFunctions;
+	function getAnswer()
+	{
+		var answer=0;
+		while(document.QuestionForm.choice[answer].checked!=true)
+		{
+			answer++;	
+		}	
+		return String.fromCharCode(65+answer);
+	}
+	function btnCorrectAnswer()
+	{
+		var questionNumber=globalFunctions.currentQNumber;
+		if(globalFunctions.answerCorrect(questionNumber,getAnswer())==true)
+		{
+			alert("You got it right!");	
+		}	
+		else
+		{
+			alert("You got it wrong!");	
+		}
+		window.location.reload();
+	}
+</script>
+</head>
+<style type="text/css">
+.myQuestion{width:60%;margin:0 auto;padding:20px;border:#cecece 2px solid; border-radius:10px;}
+</style>
+<body>
+<div class="myQuestion">
+<form name="QuestionForm">
+	<script type="text/javascript">
+		var globalFunctions=window.top.fraTopFrame.fraGlobalFunctions;
+		document.write(globalFunctions.getQuestion());
+	</script>
+</form>
+</div>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<script type="text/javascript">
+	var questions=new Array;
+	var answers=new Array;
+	var questionAsked;
+	var numberOfQuestionAsked=0;
+	var numberOfQuestionCorrect=0;
+	var currentQNumber=-1;
+	
+	//题目内容及答案
+	//题目一
+	questions[0]=new Array;
+	questions[0][0]="The Beatles were:";
+	questions[0][1]="A sixties rock group from Liverpool";
+	questions[0][2]="Four musically gifted insects";
+	questions[0][3]="I don't know.Can I have the questions on baseball";
+	//开始写题目一的答案
+	answers[0]="A";
+	
+	//开始写题目二
+	questions[1]=new Array;
+	questions[1][0]="Homer Simpson's favorite food is:";
+	questions[1][1]="Fresh salad";
+	questions[1][2]="Doughnuts";
+	questions[1][3]="Bread and water";
+	questions[1][4]="Apples";
+	//开始写题目二的答案
+	answers[1]="B";
+	
+	//开始写题目三
+	questions[2]=new Array;
+	questions[2][0]="Lisa Simpson plays which musical instrument?";
+	questions[2][1]="Clarinet";
+	questions[2][2]="Oboe";
+	questions[2][3]="Saxophone";
+	questions[2][4]="Tubular bells";
+	//开始写题三的答案
+	answers[2]="C";
+	
+	
+	
+	
+	//重置题目
+	function resetQuiz()
+	{
+		currentQNumber=-1;
+		questionAsked=new Array();
+		for(var i=0;i<questionAsked.length;i++)
+		{
+			questionAsked[i]=false;	
+		}
+		numberOfQuestionAsked=0;
+		numberOfQuestionCorrect=0;
+	}
+	//检查正误
+	function answerCorrect(questionNumber,answer)
+	{
+		var correct=false;
+		if(answer==answers[questionNumber])
+		{
+			numberOfQuestionCorrect++;
+			correct=true;	
+		}	
+		return correct;
+	}
+	//随机抽取题目
+	function getQuestion()
+	{
+		if(questions.length!=numberOfQuestionAsked)
+		{
+			var questionNumber=Math.floor(Math.random()*questions.length);	
+			while(questionAsked[questionNumber]==true)
+			{
+				var questionNumber=Math.floor(Math.random()*questions.length);	
+
+			}
+			var questionLength=questions[questionNumber].length;
+			numberOfQuestionAsked++;
+			var questionHTML="<h4>Question"+(questionNumber+1)+"</h4>";
+			questionHTML+="<p>"+questions[questionNumber][0]+"</p>";
+			for(var i=1;i<questions[questionNumber].length;i++)
+			{
+				questionHTML+="<input type='radio' name='choice'";
+				if(i==1)
+				{
+					questionHTML+="checked='checked'";	
+				}	
+				questionHTML+=">";
+				questionHTML+=questions[questionNumber][i]+"<br/><br />";
+			}
+			questionHTML+="<input type='button' value='Check Question' name='btnNextQuestion' onclick='return btnCorrectAnswer()'>";
+			currentQNumber=questionNumber;
+			questionAsked[questionNumber]=true;
+		}	
+		else
+		{
+			var questionHTML="<h3>Quiz Complete</h3>";
+			questionHTML+="你共回答了"+numberOfQuestionAsked+"道题";
+			questionHTML+="其中，答对了"+numberOfQuestionCorrect+"道题";
+			questionHTML+="<br /><br />";
+			questionHTML+="您成绩结果为：";
+			switch(Math.round(((numberOfQuestionCorrect/numberOfQuestionAsked)*10)))
+			{
+				case 0:
+				case 1:
+				case 2:
+				case 3:
+				questionHTML+="很抱歉！";break;
+				case 4:	
+				case 5:
+				case 6:
+				case 7:
+				questionHTML+="中等";break;
+				default:
+				questionHTML+="优秀";
+			}
+			questionHTML+="<br/><br/><A href='quizPage.html'>Start Again</A>"
+		}
+		return questionHTML;
+	}
+</script>
+</head>
+
+<body>
+</body>
+</html>
