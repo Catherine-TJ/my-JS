@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<script type="text/javascript">
+	var timeDiff=0;
+	var dayLight=0;
+	var currentCity="Berlin";
+	function updateTime()
+	{
+		var nowTime=new Date();
+		var showTimeFrame=window.top.showTime.document;
+		showTimeFrame.open();
+		showTimeFrame.write("Local Time is "+getTimeString(nowTime)+"<br/>");
+		nowTime.setMinutes(nowTime.getMinutes()+nowTime.getTimezoneOffset()+parseInt(timeDiff)+parseInt(dayLight));
+		showTimeFrame.write(currentCity+" time is "+getTimeString(nowTime));
+		showTimeFrame.close();	
+	}
+	function dayLightSaving()
+	{
+		if(document.form1.chkDaylight.checked==true)
+		{
+			dayLight=60;	
+		}
+		else
+		{
+			dayLight=0;
+		}
+		updateTime();	
+	}
+	function changeCity()
+	{
+		var listCity=document.form1.cityList;
+		currentCity=listCity.options[listCity.selectedIndex].text;
+		timeDiff=listCity.options[listCity.selectedIndex].value;
+		updateTime();	
+	}
+	function getTimeString(timeObject)
+	{
+		var timeString;
+		var hours=timeObject.getHours();
+		if(hours<10)
+		{
+			hours="0"+hours;	
+		}	
+		var minutes=timeObject.getMinutes();
+		if(minutes<10)
+		{
+			minutes="0"+minutes;	
+		}
+		var seconds=timeObject.getSeconds();
+		if(seconds<10)
+		{
+			seconds="0"+seconds;	
+		}
+		timeString=hours+":"+minutes+":"+seconds;
+		return timeString;
+	}
+</script>
+</head>
+
+<body onload="updateTime()">
+<form name="form1">
+	<select name="cityList" onchange="changeCity()">
+    	<option value="60">Berlin</option>
+        <option value="330">Bombay</option>
+        <option value="0">London</option>
+        <option value="180">Moscow</option>
+        <option value="-300">New York</option>
+        <option value="60">Paris</option>
+        <option value="-480">San Francisco</option>
+        <option value="600">Sydney</option>
+    </select>
+    <p>
+    	It's summer time in the selected city and it's country adjusts for summertime daylight saving.
+        <input type="checkbox" name="chkDaylight" onclick="dayLightSaving()"/>
+    </p>
+</form>
+</body>
+</html>
