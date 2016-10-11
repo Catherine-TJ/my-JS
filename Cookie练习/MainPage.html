@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<script type="text/javascript">
+	var lastUpdated=new Date("Tue, 28 Dec 2020");
+	function getCookieValue(cookieName)
+	{
+		var cookieValue=document.cookie;
+		var cookieStartAt=cookieValue.indexOf(" "+cookieName+"=");
+		if(cookieStartAt==-1)
+		{
+			cookieStartAt=cookieValue.indexOf(cookieName+"=");	
+		}
+		if(cookieStartAt==-1)
+		{
+			cookieValue=null;	
+		}
+		else
+		{
+			cookieStartAt=cookieValue.indexOf("=",cookieStartAt)+1;
+			var cookieEndAt=cookieValue.indexOf(";",cookieStartAt);
+			if(cookieEndAt==-1)
+			{
+				cookieEndAt=cookieValue.length;	
+			}	
+			cookieValue=unescape(cookieValue.substring(cookieStartAt,cookieEndAt));
+		}
+		return cookieValue;
+	}
+	function setCookie(cookieName,cookieValue,cookiePath,cookieExpires)
+	{
+		cookieValue=escape(cookieValue);
+		if(cookieExpires=="")
+		{
+			var nowDate=new Date();
+			nowDate.setMonth(nowDate.getMonth()+6);
+			cookieExpires=nowDate.toGMTString();	
+		}	
+		if(cookiePath!="")
+		{
+			cookiePath=";cookiePath+"+cookiePath;
+		}
+		document.cookie=cookieName+"="+cookieValue+";expires="+cookieExpires+cookiePath;
+	}
+</script>
+</head>
+
+<body>
+<h2 align="center">welcome to my website</h2>
+<br /><br />
+<script type="text/javascript">
+	var lastVisit=getCookieValue("LastVisit");
+	if(lastVisit!=null)
+	{
+		lastVisit=new Date(lastVisit);
+		if(lastVisit<lastUpdated)
+		{
+			document.write("<A href=\"whatnew.html\">");	
+			document.write("<img scr=\"images\p0.jpg\"></A>");
+		}	
+	}
+	var nowDate=new Date();
+	setCookie("LastVisit",nowDate.toGMTString(),"","");
+	
+</script>
+</body>
+</html>
